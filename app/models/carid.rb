@@ -1,0 +1,2 @@
+class Carid < ApplicationRecord
+end

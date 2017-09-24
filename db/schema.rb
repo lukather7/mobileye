@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619083702) do
+ActiveRecord::Schema.define(version: 20170921150615) do
+
+  create_table "carids", force: :cascade do |t|
+    t.string   "company"
+    t.string   "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
