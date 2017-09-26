@@ -1,13 +1,31 @@
+
+function get_area_name(latLng_now){
+  // 座標から住所名を取得
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({latLng: latLng_now, language: "ja"}, function(results, status){
+    if(status == google.maps.GeocoderStatus.OK){
+      $("#area_name").html(results[0].formatted_address+'付近');
+    } else {
+     console.log(status);
+     // エラーの場合
+    }   
+  });
+}
+
 $(document).ready(function(){
-    
+
+  var controller = $("body").data("controller").replace(/\//, "_");
+  if (controller != "static_pages") {
+    return;
+  }
      
    // gps に対応しているかチェック
- if (! navigator.geolocation) {
+  if (! navigator.geolocation) {
       $('#gmap').html('GPSに対応したブラウザでお試しください');
         return false;
-   }
+  }
  
-   $('#gmap').html('GPSデータを取得します...');
+  $('#gmap').html('GPSデータを取得します...');
    
  
  // gps取得開始
@@ -43,6 +61,7 @@ $(document).ready(function(){
  
      // 現在地にスクロールさせる
      gmap.panTo(currentPos);
+     get_area_name(currentPos);
  
    }, function() {
      // gps 取得失敗

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Microposts</title>
+    <title>Mobileye</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,7 +11,7 @@
 
   </head>
 
-  <body>
+  <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <%= render 'layouts/header' %>
     <div class="container">
      <% flash.each do |message_type, message| %> <!-- ここから -->

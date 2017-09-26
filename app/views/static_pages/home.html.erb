@@ -3,6 +3,12 @@
     <aside class="col-md-4">
       <section class="user_info">
         <%#= render 'shared/user_info' %>  
+        <div class="provider">事業者名:<%= @micropost.carid.company %></div>
+        <div class="number">車両番号:<%= @micropost.carid.number %></div>
+         
+        <% rtime = Time.now;  rtimestr= rtime.strftime("%Y/%m/%d %02H:%02M") %>
+        <div class="rtime">時刻： <%= rtimestr %></div>
+
       </section>        
       <section class="micropost_form">
         <%= render 'shared/micropost_form' %>  
@@ -10,6 +16,7 @@
     </aside>  
     <div id="gmapwrap" class="col-md-8">
       <div id="gmap"></div>
+      <div id="area_name"></div>
     </div>
   </div>
 <% else %>
@@ -24,6 +31,7 @@
     </div>
     <div id="gmapwrap" class="col-md-8">
       <div id="gmap"></div>
+      <div id="area_name"></div>
     </div>
   </div>
 <% end %>  

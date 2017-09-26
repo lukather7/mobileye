@@ -1,0 +1,28 @@
+
+<h2>CAR-ID一覧</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>company</td>
+            <td>number</td>
+            <td>delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @carids.each do |carid| %>
+            <tr>
+                <td><%= link_to "CAR-ID " + carid.id.to_s, edit_carid_path(carid.id), class:'btn btn-primary btn-xs' %></td>
+                <td><%= carid.company %></td>
+                <td><%= carid.number %></td>
+                <td>
+                    <%= link_to "削除", carid_path(carid.id), method: :delete, :confirm => 'Are you sure?',
+                        class:'btn btn-danger btn-xs' %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= paginate @carids %>

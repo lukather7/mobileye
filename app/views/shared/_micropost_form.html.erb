@@ -1,5 +1,36 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  
+    <div class="radio-inline">
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :速度オーバー %><%= f.label :kind, :速度オーバー, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :急発進 %><%= f.label :kind, :急発進, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :急ブレーキ %><%= f.label :kind, :急ブレーキ, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :居眠り %><%= f.label :kind, :居眠り, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :よそ見 %><%= f.label :kind, :よそ見, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :信号無視 %><%= f.label :kind, :信号無視, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :歩行者無視 %><%= f.label :kind, :歩行者無視, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :あやうく事故 %><%= f.label :kind, :あやうく事故, class:"control-label" %>
+      </div>
+      <div class="col-xs-4">
+        <%= f.radio_button :kind, :その他 %><%= f.label :kind, :その他, class:"control-label" %>
+      </div>
+    </div>
+    <h5>コメント</h5>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
