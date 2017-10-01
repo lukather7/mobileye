@@ -4,7 +4,7 @@
 /* universal */
 
 body {
- padding-top: 60px;    
+/* padding-top: 60px; */
 }
 
 section {
@@ -109,11 +109,11 @@ input {
 
 aside {
     section.user_info {
-        margin-top: 20px;
+        margin-top: 5px;
     }
     section {
-        padding: 10px 0;
-        margin-top: 20px;
+        padding: 5px 0;
+        margin-top: 10px;
         &:first-child {
           border: 0;
           padding-top: 0;
@@ -185,4 +185,20 @@ aside {
 .micropost_form .radio-inline {
     width: 100%;
     font-size: 1.2rem;
+}
+
+.micropost_form label {
+    font-size: 1.0rem;        
+}
+
+@media screen and (max-width: 992px) {
+    .micropost_form label {
+        font-size: 1.2rem;        
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .micropost_form label {
+        font-size: 0.97rem;        
+    }
 }

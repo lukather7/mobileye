@@ -8,12 +8,26 @@
     </section>
   </aside> 
   <div class="col-md-8">
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-    <% end %>  
+    <table class="table table-striped table-bordered">
+      <tr>
+        <thead>
+          <td>Car-ID</td> <td>Company</td> <td>Number</td>
+          <td>Edit</td> <td>Carte</td>
+        </thead>
+      </tr>
+      <tbody>
+        <% @carids.each do |car| %>
+          <tr>
+           <td><%= car.id %></td> 
+           <td><%= car.company %></td> 
+           <td><%= car.number %></td> 
+           <td><%= link_to :Edit, edit_carid_path(car.id), class:"btn btn-primary btn-xs" %></td>
+           <td><%= link_to :Carte, carte_carid_path(car.id), class:"btn btn-success btn-xs" %></td>
+          </tr>
+        
+        <% end %> 
+      </tbody>
+    </table>
   </div>
 </div>
 

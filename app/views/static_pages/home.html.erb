@@ -6,12 +6,12 @@
         <div class="provider">事業者名:<%= @micropost.carid.company %></div>
         <div class="number">車両番号:<%= @micropost.carid.number %></div>
          
-        <% rtime = Time.now;  rtimestr= rtime.strftime("%Y/%m/%d %02H:%02M") %>
-        <div class="rtime">時刻： <%= rtimestr %></div>
+        <% ntime = Time.now;  gmtimestr= ntime.strftime("%Y/%m/%d %02H:%02M") %>
+        <div class="rtime">時刻： <%= gmtimestr %></div>
 
       </section>        
       <section class="micropost_form">
-        <%= render 'shared/micropost_form' %>  
+        <%= render 'shared/micropost_form', {gmtimestr: gmtimestr} %>  
         緯度<div class="lat"></div>
         経度<div class="lng"></div>
         精度<div class="accurate"></div> 

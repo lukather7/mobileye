@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 20170925152546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "kind"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "accuracy"
+    t.datetime "logtime"
     t.index ["carid_id", "created_at"], name: "index_microposts_on_carid_id_and_created_at"
     t.index ["carid_id"], name: "index_microposts_on_carid_id"
   end

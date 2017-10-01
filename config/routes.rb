@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
-#  get    'signup', to: 'users#new'
+  get    'signup', to: 'users#new'
   get     'admin', to: 'admin#index'
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   
   resources :users
   resources :microposts
-  resources :carids
+  resources :carids do
+    member do
+      get 'carte'
+    end
+  end
 end

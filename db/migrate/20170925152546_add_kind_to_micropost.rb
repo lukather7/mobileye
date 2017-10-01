@@ -4,5 +4,6 @@ class AddKindToMicropost < ActiveRecord::Migration[5.0]
     add_column :microposts, :lat, :string
     add_column :microposts, :lng, :string
     add_column :microposts, :accuracy, :string
+    add_column :microposts, :logtime, :datetime
   end
 end

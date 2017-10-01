@@ -30,6 +30,11 @@ class CaridsController < ApplicationController
         end
     end
     
+    def carte
+        @carid = Carid.find(params[:id])
+        @microposts = @carid.microposts.order("created_at DESC")
+    end
+    
     private
     def carid_params
         params.require(:carid).permit(:company, :number)

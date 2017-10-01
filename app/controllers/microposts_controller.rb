@@ -2,12 +2,13 @@ class MicropostsController < ApplicationController
 # before_action :logged_in_user, only: [:create]  
  
   def create
-#   @micropost = current_user.microposts.build(micropost_params)
+   @carid = Carid.find(params[:micropost][:carid_id])
+   @micropost = @carid.microposts.build(micropost_params)
    if @micropost.save
      flash[:success] = "Micropost created!" 
-     redirect_to root_url
+     redirect_to root_url(carid: @carid.id)
    else
-     render 'static_pages/home'
+     render 'static_pages/home', carid: @carid.id
    end
   end
   
@@ -21,7 +22,7 @@ class MicropostsController < ApplicationController
   
   private
   def micropost_params
-   params.require(:micropost).permit(:content, :kind, :lat, :lng, :accuracy, :carid_id)
+   params.require(:micropost).permit(:content, :kind, :lat, :lng, :accuracy, :carid_id, :logtime)
   end
 end 
     

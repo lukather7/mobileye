@@ -58,6 +58,9 @@ function get_location() {
      gmap.panTo(currentPos);
      get_area_name(currentPos);
      console.log(pos.coords.latitude);
+     $("#micropost_lat").val(pos.coords.latitude);
+     $("#micropost_lng").val(pos.coords.longitude);
+     $("#micropost_accuracy").val(pos.coords.accuracy);
      $(".lat").html(pos.coords.latitude);
      $(".lng").html(pos.coords.longitude);
      $(".accurate").html(pos.coords.accuracy);
