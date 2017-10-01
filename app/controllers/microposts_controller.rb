@@ -21,7 +21,7 @@ class MicropostsController < ApplicationController
   
   private
   def micropost_params
-   params.require(:micropost).permit(:content)
+   params.require(:micropost).permit(:content, :kind, :lat, :lng, :accuracy, :carid_id)
   end
 end 
     
