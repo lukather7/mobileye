@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   resources :users
-  resources :microposts
+  resources :microposts do
+    member do
+      get 'do_map'
+    end
+  end
   resources :carids do
     member do
       get 'carte'

@@ -7,6 +7,7 @@ function get_area_name(latLng_now){
   geocoder.geocode({latLng: latLng_now, language: "ja"}, function(results, status){
     if(status == google.maps.GeocoderStatus.OK){
       $("#area_name").html(results[0].formatted_address+'付近');
+      $("#micropost_area").val(results[0].formatted_address);
     } else {
      console.log(status);
      // エラーの場合
@@ -14,22 +15,9 @@ function get_area_name(latLng_now){
   });
 }
 
-
-function get_location() {
-    
-  // gps取得開始
-  navigator.geolocation.getCurrentPosition(
-     function(pos) {
-        // gps 取得成功
-     // google map 初期化
-     
-     if (pos.coords.accuracy > 500) {
-         get_location();
-         return;
-     }
-     
-     console.log(pos);
-     var gmap = new google.maps.Map($('#gmap').get(0), {
+function get_map_render(pos) {
+    console.log(pos);  
+    var gmap = new google.maps.Map($('#gmap').get(0), {
          center: new google.maps.LatLng(35, 135),
          mapTypeId: google.maps.MapTypeId.ROADMAP,
          zoom: 17
@@ -56,14 +44,31 @@ function get_location() {
  
      // 現在地にスクロールさせる
      gmap.panTo(currentPos);
+
      get_area_name(currentPos);
-     console.log(pos.coords.latitude);
-     $("#micropost_lat").val(pos.coords.latitude);
-     $("#micropost_lng").val(pos.coords.longitude);
-     $("#micropost_accuracy").val(pos.coords.accuracy);
-     $(".lat").html(pos.coords.latitude);
-     $(".lng").html(pos.coords.longitude);
-     $(".accurate").html(pos.coords.accuracy);
+}
+
+function get_location() {
+    
+  // gps取得開始
+  navigator.geolocation.getCurrentPosition(
+     function(pos) {
+        // gps 取得成功
+     // google map 初期化
+     
+         if (pos.coords.accuracy > 500) {
+             get_location();
+             return;
+         }
+     
+         console.log(pos);
+         get_map_render(pos);
+         $("#micropost_lat").val(pos.coords.latitude);
+         $("#micropost_lng").val(pos.coords.longitude);
+         $("#micropost_accuracy").val(pos.coords.accuracy);
+         $(".lat").html(pos.coords.latitude);
+         $(".lng").html(pos.coords.longitude);
+         $(".accurate").html(pos.coords.accuracy);
       }, function() {
          // gps 取得失敗
          $('#gmap').text('GPSデータを取得できませんでした');

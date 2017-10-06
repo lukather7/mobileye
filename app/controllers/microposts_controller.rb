@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-# before_action :logged_in_user, only: [:create]  
+ before_action :logged_in_user, only: [:do_map]  
  
   def create
    @carid = Carid.find(params[:micropost][:carid_id])
@@ -20,9 +20,13 @@ class MicropostsController < ApplicationController
    redirect_to request.referrer || root_url
   end
   
+  def do_map
+   @micropost = Micropost.find(params[:id])
+  end
+  
   private
   def micropost_params
-   params.require(:micropost).permit(:content, :kind, :lat, :lng, :accuracy, :carid_id, :logtime)
+   params.require(:micropost).permit(:content, :kind, :lat, :lng, :accuracy, :carid_id, :logtime, :area)
   end
 end 
     

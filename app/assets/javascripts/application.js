@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require gps
 //= require bootstrap-sprockets
 //= require_tree .

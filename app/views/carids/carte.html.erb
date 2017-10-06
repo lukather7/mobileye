@@ -1,26 +1,32 @@
 <h1>Log for Carid <%= @carid.id %>: Number <%= @carid.number %></h1>
 
+<% Time.zone = 'Bangkok' %>
+<%# Time.zone = 'Tokyo' %>
+<%= render 'modal' %>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <td>Logtime</td> <td>Number</td> <td>Kind</td> <td>content</td> <td>Lat</td>
             <td>Lng</td>
+            <td>Map</td>
         </tr>
     </thead>
     <tbody>
        <% @microposts.each do |post| %>
            <tr>
-              <td><%= post.logtime %></td> 
+              <td><%= post.logtime.to_time.strftime("%Y-%m-%d %H:%M") %></td> 
               <td><%= @carid.number %></td> 
               <td><%= post.kind %></td> 
               <td><%= post.content.truncate(20) %></td> 
               <td><%= post.lat %></td> 
               <td><%= post.lng %></td> 
+              <td>
+                  <%= link_to "map", do_map_micropost_path(post), remote: true,
+                     class:'btn btn-success btn-xs',
+                     data:{toggle:"modal", target:"#modal-gmap"}  %>
+              </td> 
            </tr>
        <% end %>
         
     </tbody>
-</table>
-    
-    
 </table>

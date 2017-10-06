@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925152546) do
+ActiveRecord::Schema.define(version: 20171006074329) do
 
   create_table "carids", force: :cascade do |t|
     t.string   "company"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170925152546) do
     t.string   "lng"
     t.string   "accuracy"
     t.datetime "logtime"
+    t.string   "area"
     t.index ["carid_id", "created_at"], name: "index_microposts_on_carid_id_and_created_at"
     t.index ["carid_id"], name: "index_microposts_on_carid_id"
   end

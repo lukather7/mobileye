@@ -1,0 +1,6 @@
+var pos = {};
+pos.coords = {};
+pos.coords.latitude = <%= @micropost.lat %>;
+pos.coords.longitude = <%= @micropost.lng %>;
+pos.coords.accuracy = <%= @micropost.accuracy %>;
+get_map_render(pos);
