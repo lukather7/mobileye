@@ -32,7 +32,7 @@ class CaridsController < ApplicationController
     
     def carte
         @carid = Carid.find(params[:id])
-        @microposts = @carid.microposts.order("created_at DESC")
+        @microposts = @carid.microposts.order("created_at DESC").page(params[:page]).per(10)
     end
     
     private

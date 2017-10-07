@@ -21,13 +21,21 @@
            <td><%= car.id %></td> 
            <td><%= car.company %></td> 
            <td><%= car.number %></td> 
-           <td><%= link_to :Edit, edit_carid_path(car.id), class:"btn btn-primary btn-xs" %></td>
-           <td><%= link_to :Carte, carte_carid_path(car.id), class:"btn btn-success btn-xs" %></td>
+           <td class="center"><%= link_to :Edit, edit_carid_path(car.id), class:"btn btn-primary btn-xs" %></td>
+           <td class="center">
+             <%= link_to carte_carid_path(car.id) do %>
+                <span class="btn btn-success btn-xs">Carte 
+                   <span class="badge"><%= car.microposts.count %> 件</span>
+                </span>
+             <% end %>
+           </td>
           </tr>
         
-        <% end %> 
+        <% end %>
+ 
       </tbody>
     </table>
+   <%= paginate @carids %>
   </div>
 </div>
 

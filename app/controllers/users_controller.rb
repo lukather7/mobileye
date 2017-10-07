@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   
-  def show # 追加
+  def show
    @user = User.find(params[:id])
-   @carids = Carid.all.order("created_at DESC")
+   @carids = Carid.all.order("created_at DESC").page(params[:page]).per(10)
   end
     
   def new
