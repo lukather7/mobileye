@@ -13,7 +13,7 @@
     <tbody>
        <% @microposts.each do |post| %>
            <tr>
-              <td><%= post.logtime.to_time.strftime("%Y-%m-%d %H:%M") %></td> 
+              <td><%= post.logtime.in_time_zone('Bangkok').to_time.strftime("%Y-%m-%d %H:%M") %></td> 
               <td><%= @carid.number %></td> 
               <td><%= post.kind %></td> 
               <td><%= post.content.truncate(20) %></td> 

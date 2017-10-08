@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users
+  resources :users do
+    member do
+      get 'ordershow'
+    end
+  end
   resources :microposts do
     member do
       get 'do_map'

@@ -7,10 +7,11 @@
         <div class="number">車両番号:<%= @micropost.carid.number %></div>
          
         <% Time.zone = 'UTC' %>
-        <% ntime = Time.now;  gmtimestr= ntime.strftime("%Y/%m/%d %02H:%02M") %>
+        <% ntime = Time.now;  gmtimestr= ntime.in_time_zone('UTC').strftime("%Y/%m/%d %02H:%02M") %>
         <% Time.zone = 'Bangkok' %>
-        <% ltimestr = Time.zone.now.strftime("%Y/%m/%d %02H:%02M") %>
+        <% ltimestr = ntime.in_time_zone('Asia/Bangkok').strftime("%Y/%m/%d %02H:%02M") %>
         <div class="rtime">時刻： <%= ltimestr %> / <%= Time.zone.name %></div>
+        <% Time.zone = 'UTC' %>
 
       </section>        
       <section class="micropost_form">
