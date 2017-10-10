@@ -1,6 +1,7 @@
 /* global $ */
 /* global google*/
 /* global navigator*/
+
 function get_area_name(latLng_now){
   // 座標から住所名を取得
   var geocoder = new google.maps.Geocoder();
@@ -15,7 +16,25 @@ function get_area_name(latLng_now){
   });
 }
 
-function get_map_render(pos) {
+function set_maker(gmap, pos) {
+     console.log(gmap);
+     console.log(pos);
+     // 現在位置にピンをたてる
+     var currentPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+     var currentMarker = new google.maps.Marker({
+            position: currentPos
+     });
+
+     currentMarker.setMap(gmap);
+     
+     return currentPos;
+}
+
+
+function get_map_render_wo_area(pos, accflag) {
+    // accflag 誤差円を描くflag
+
     console.log(pos);  
     var gmap = new google.maps.Map($('#gmap').get(0), {
          center: new google.maps.LatLng(35, 135),
@@ -23,13 +42,10 @@ function get_map_render(pos) {
          zoom: 17
      });
  
+    currentPos = set_maker(gmap, pos);
      // 現在位置にピンをたてる
-     var currentPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-     var currentMarker = new google.maps.Marker({
-            position: currentPos
-     });
-     currentMarker.setMap(gmap);
  
+   if (accflag === true) {
    // 誤差を円で描く
       new google.maps.Circle({
          map: gmap,
@@ -41,11 +57,17 @@ function get_map_render(pos) {
          fillColor: '#0088ff',
          fillOpacity: 0.2
         });
+    }
  
      // 現在地にスクロールさせる
      gmap.panTo(currentPos);
+     return [gmap, currentPos];
+}
 
-     get_area_name(currentPos);
+function get_map_render(pos) {
+    ret = get_map_render_wo_area(pos, true);
+    get_area_name(ret[1]);  // ret[1] is currentpos
+    return ret[0];          // ret[0] is gmap
 }
 
 function get_location() {

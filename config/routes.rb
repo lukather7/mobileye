@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get 'do_map'
     end
   end
+  get 'carids/allmap', to: "carids#allmap",  as: 'allmap'
+  
+  get 'carids/order', to: "carids#ordered",  as: 'ordered_carids'
   resources :carids do
     member do
       get 'carte'

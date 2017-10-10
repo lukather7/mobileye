@@ -193,7 +193,7 @@ aside {
 
 @media screen and (max-width: 992px) {
     .micropost_form label {
-        font-size: 1.2rem;        
+        font-size: 1.2rem; 
     }
 }
 
@@ -201,4 +201,9 @@ aside {
     .micropost_form label {
         font-size: 0.97rem;        
     }
+}
+
+.my-1 {
+    margin: 1rem 0;
+    // equivalent to bootstrap4 my(top and bottom) class
 }

@@ -1,7 +1,15 @@
 class CaridsController < ApplicationController
     
     def index
-        @carids = Carid.all.order("created_at DESC").page(params[:page]).per(10)
+        if (params[:company])
+            @carids = Carid.where(company:params[:company]).order("number").page(params[:page]).per(10)
+        else
+            @carids = Carid.all.order("created_at DESC").page(params[:page]).per(10)
+        end
+    end
+    
+    def ordered
+        @companies = Carid.all.pluck(:company).uniq.sort
     end
     
     def new
@@ -33,6 +41,10 @@ class CaridsController < ApplicationController
     def carte
         @carid = Carid.find(params[:id])
         @microposts = @carid.microposts.order("created_at DESC").page(params[:page]).per(10)
+    end
+    
+    def allmap
+        @microposts = Micropost.all
     end
     
     private

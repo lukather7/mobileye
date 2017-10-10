@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-9 col-sm-offset-3">
+        <%= link_to "管理画面", admin_path, class:"btn btn-primary" %>
+    </div>
+</div>
+
+<h2>事業者一覧</h2>
+
+<div class="row">
+    <% @companies.each do |c| %>
+        <div class="col-xs-3">
+            <%= link_to c.truncate(8), carids_path({company: c}), class:"btn btn-primary"  %>
+        </div>
+    <% end %>
+</div>

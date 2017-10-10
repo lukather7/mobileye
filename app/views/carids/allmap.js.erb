@@ -1,0 +1,22 @@
+var pos = {};
+pos.coords = {};
+var gmap;
+var currentPos;
+var bounds = new google.maps.LatLngBounds();
+<% @microposts.each_with_index do |post, idx| %>
+    console.log("idx");
+    console.log(<%= idx %>);
+    pos.coords.latitude = <%= post.lat %>;
+    pos.coords.longitude = <%= post.lng %>;
+    pos.coords.accuracy = <%= post.accuracy %>;
+    <% if (idx == 0) %>
+        ret = get_map_render_wo_area(pos, false);
+        gmap = ret[0];
+    <% else %>
+       set_maker(gmap, pos);
+       currentPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+       bounds.extend(currentPos);
+
+    <% end %>
+<% end %>
+gmap.fitBounds(bounds);

@@ -1,3 +1,4 @@
+<%= render 'carids/modal' %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -10,8 +11,17 @@
   <div class="col-md-8">
     <div class="row">
      <%= link_to "車両登録最新順", @user, class:"btn btn-default col-xs-offset-1" %>
-    <span class="btn btn-primary col-xs-offset-1"> >>報告発生最新順<< </span>
+     <span class="btn btn-primary col-xs-offset-1"> >>報告発生最新順<< </span>
+     <%#= link_to ">> All map <<", allmap_path, remote: true,
+                     class:'btn btn-warning col-xs-offset-1',
+                     data:{toggle:"modal", target:"#modal-gmap"}  %>
     </div>
+    <% if params[:company] %>
+      <div class="row my-1">
+        事業者指定：<span class="btn btn-warning btn-xs"><%= params[:company] %></span>
+        : <%= link_to "Reset", ordershow_user_path(@user), class:"btn btn-success btn-xs" %>
+    </div>
+    <% end %>
     <table class="table table-striped table-bordered">
       <tr>
         <thead>
@@ -23,7 +33,7 @@
         <% @carids.each do |car| %>
           <tr>
            <td><%= car.id %></td> 
-           <td><%= car.company %></td> 
+           <td><%= link_to car.company, ordershow_user_path(@user, company:car.company) %></td> 
            <td><%= car.number %></td> 
            <td class="center"><%= link_to :Edit, edit_carid_path(car.id), class:"btn btn-primary btn-xs" %></td>
            <td class="center">
