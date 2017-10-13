@@ -7,4 +7,5 @@ class Micropost < ApplicationRecord
   validates :logtime, presence: true
   validates :carid_id,  presence: true
   validates :accuracy,  presence: true, numericality:{ maximum: 500 }
+  validates :area,  presence: true
 end

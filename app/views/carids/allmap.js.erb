@@ -2,6 +2,10 @@ var pos = {};
 pos.coords = {};
 var gmap;
 var currentPos;
+
+
+
+
 var bounds = new google.maps.LatLngBounds();
 <% @microposts.each_with_index do |post, idx| %>
     console.log("idx");
@@ -12,6 +16,7 @@ var bounds = new google.maps.LatLngBounds();
     <% if (idx == 0) %>
         ret = get_map_render_wo_area(pos, false);
         gmap = ret[0];
+        bounds.extend(currentPos);
     <% else %>
        set_maker(gmap, pos);
        currentPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -20,3 +25,10 @@ var bounds = new google.maps.LatLngBounds();
     <% end %>
 <% end %>
 gmap.fitBounds(bounds);
+var zoomChangeBoundsListener = 
+    google.maps.event.addListenerOnce(gmap, 'bounds_changed', function(event) {
+        if (this.getZoom() > 16){
+            this.setZoom(16);
+        }
+});
+setTimeout(function(){google.maps.event.removeListener(zoomChangeBoundsListener)}, 2000);

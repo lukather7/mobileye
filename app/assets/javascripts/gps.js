@@ -27,7 +27,7 @@ function set_maker(gmap, pos) {
      });
 
      currentMarker.setMap(gmap);
-     
+     var ratio = gmap.getZoom();
      return currentPos;
 }
 

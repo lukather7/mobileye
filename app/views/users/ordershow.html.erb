@@ -6,13 +6,15 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= link_to "新規車両登録", new_carid_path, class:"btn btn-success" %>
+      <%= link_to "管理画面",  admin_path, class:"btn btn-primary" %>
     </section>
   </aside> 
   <div class="col-md-8">
     <div class="row">
      <%= link_to "車両登録最新順", @user, class:"btn btn-default col-xs-offset-1" %>
      <span class="btn btn-primary col-xs-offset-1"> >>報告発生最新順<< </span>
-     <%#= link_to ">> All map <<", allmap_path, remote: true,
+     <%#= link_to ">> All map <<", allmap_path(company: params[:company]), remote: true,
                      class:'btn btn-warning col-xs-offset-1',
                      data:{toggle:"modal", target:"#modal-gmap"}  %>
     </div>

@@ -44,7 +44,12 @@ class CaridsController < ApplicationController
     end
     
     def allmap
-        @microposts = Micropost.all
+        if (params[:company])
+           @carids = Carid.where(company:params[:company]).pluck(:id)
+           @microposts = Micropost.where(carid_id: @carids)
+        else
+            @microposts = Micropost.all
+        end
     end
     
     private
