@@ -27,8 +27,12 @@ var bounds = new google.maps.LatLngBounds();
 gmap.fitBounds(bounds);
 var zoomChangeBoundsListener = 
     google.maps.event.addListenerOnce(gmap, 'bounds_changed', function(event) {
-        if (this.getZoom() > 16){
+        var ratio = this.getZoom();
+        if (ratio > 16){
             this.setZoom(16);
+        }
+        else {
+            this.setZoom(ratio - 1);
         }
 });
 setTimeout(function(){google.maps.event.removeListener(zoomChangeBoundsListener)}, 2000);
