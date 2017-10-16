@@ -2,15 +2,16 @@ class MicropostsController < ApplicationController
  before_action :logged_in_user, only: [:do_map]  
  
   def create
-   @carid = Carid.find(params[:micropost][:carid_id])
-   @micropost = @carid.microposts.build(micropost_params)
+   @car = Carid.find(params[:micropost][:carid_id])
+   @micropost = @car.microposts.build(micropost_params)
    if @micropost.save
      flash[:success] = "記録に成功しました" 
-     redirect_to root_url(carid: @carid.id)
+     redirect_to root_url(carid: @car.id)
    else
      flash[:danger] = "記録できませんでした" 
-     redirect_to root_url(carid: @carid.id)
-#     render 'static_pages/home', {carid: @carid.id}
+#     redirect_to root_url(carid: @carid.id)
+     params[:carid] = @car.id
+     render 'static_pages/home', {carid: @car.id}
    end
   end
   

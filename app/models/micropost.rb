@@ -1,7 +1,7 @@
 class Micropost < ApplicationRecord
   belongs_to :carid
-  validates :content, presence: true, length: { maximum: 140 }
   validates :kind,    presence: true
+  validates :content, presence: true, length: { maximum: 140 }
   validates :lat,     presence: true
   validates :lng,     presence: true
   validates :logtime, presence: true

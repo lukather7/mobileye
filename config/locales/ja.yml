@@ -1,0 +1,13 @@
+ja:
+    activerecord:
+        models:
+            micropost: 記録
+        attributes:
+            micropost:
+                kind: 種別
+                content: コメント
+                lat: 緯度
+                lng: 経度
+                area: GPS位置情報
+    form: 入力内容にエラーがあります。
+    error: 件

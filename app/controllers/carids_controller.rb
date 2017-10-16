@@ -1,4 +1,5 @@
 class CaridsController < ApplicationController
+    before_action :logged_in_user
     
     def index
         if (params[:company])

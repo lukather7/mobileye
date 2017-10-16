@@ -32,7 +32,7 @@
     </div>
     <h5>コメント</h5>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: "内容を入力してください...(キー入力で消えます)" %>
   </div>
   <%= f.hidden_field :carid_id, value: @micropost.carid.id %>
   <%= f.hidden_field :lat %>

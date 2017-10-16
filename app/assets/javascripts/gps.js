@@ -87,7 +87,7 @@ function get_location() {
 $(document).ready(function(){
 
   var controller = $("body").data("controller").replace(/\//, "_");
-  if (controller != "static_pages") {
+  if (controller != "static_pages" && controller != "microposts") {
     return;
   }
      
@@ -97,7 +97,7 @@ $(document).ready(function(){
         return false;
   }
  
-  $('#gmap').html('GPSデータを取得します...');
+  $('#gmap').html('GPSデータを取得中...お待ち下さい...');
   get_location(); 
    
 });
